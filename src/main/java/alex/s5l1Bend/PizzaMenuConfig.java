@@ -1,5 +1,9 @@
-package alex.s5l1Bend.entities;
+package alex.s5l1Bend;
 
+import alex.s5l1Bend.entities.Drink;
+import alex.s5l1Bend.entities.Menu;
+import alex.s5l1Bend.entities.Pizza;
+import alex.s5l1Bend.entities.Topping;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
