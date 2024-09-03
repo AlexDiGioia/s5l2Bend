@@ -1,6 +1,7 @@
 package alex.s5l1Bend.entities;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,13 +16,13 @@ public class Ordine {
     private statoOrdine status;
     private int coperti;
     private LocalDateTime oraOrdine;
+    @Value("${costo.coperto}")
     private double costoCoperto;
 
-    public Ordine(int orderNumber, Tavolo table, int coperti, double costoCoperto) {
+    public Ordine(int orderNumber, Tavolo table, int coperti) {
         this.orderNumber = orderNumber;
         this.tavolo = table;
         this.coperti = coperti;
-        this.costoCoperto = costoCoperto;
         this.pizzas = new ArrayList<>();
         this.drinks = new ArrayList<>();
         this.status = statoOrdine.IN_CORSO;
@@ -48,11 +49,12 @@ public class Ordine {
         StringBuilder orderDescription = new StringBuilder("Ordine #" + orderNumber + " - " + status + "\n");
         orderDescription.append("Tavolo: ").append(tavolo.getNTavolo()).append("\n");
         orderDescription.append("Coperti: ").append(coperti).append("\n");
-        orderDescription.append("Ordine Time: ").append(oraOrdine).append("\n");
-        orderDescription.append("Items:\n");
+        orderDescription.append("Ora Ordine: ").append(oraOrdine).append("\n");
+        orderDescription.append("Piatti:\n");
         pizzas.forEach(pizza -> orderDescription.append(pizza.toString()).append("\n"));
+        orderDescription.append("Bevande:\n");
         drinks.forEach(drink -> orderDescription.append(drink.toString()).append("\n"));
-        orderDescription.append("Total Amount: €").append(String.format("%.2f", getTotalAmount())).append("\n");
+        orderDescription.append("Prezzo totale: €").append(String.format("%.2f", getTotalAmount())).append("\n");
         return orderDescription.toString();
     }
 }
