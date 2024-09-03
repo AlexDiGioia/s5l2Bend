@@ -19,9 +19,9 @@ public class Ordine {
     @Value("${costo.coperto}")
     private double costoCoperto;
 
-    public Ordine(int orderNumber, Tavolo table, int coperti) {
+    public Ordine(int orderNumber, Tavolo tavolo, int coperti) {
         this.orderNumber = orderNumber;
-        this.tavolo = table;
+        this.tavolo = tavolo;
         this.coperti = coperti;
         this.pizzas = new ArrayList<>();
         this.drinks = new ArrayList<>();
